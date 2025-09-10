@@ -5,9 +5,14 @@
 /.junie/
 .aider*
 .aider/
+.aiignore
 
 # OS/editor junk
 .DS_Store
 Thumbs.db
 
+# project-specific
 /node_modules/
+/twilio.env
+/dist/
+.twiliodeployinfo
