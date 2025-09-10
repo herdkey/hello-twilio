@@ -1,0 +1,13 @@
+# VCS and tooling
+*.iml
+/.idea/
+/.vscode/
+/.junie/
+.aider*
+.aider/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+
+/node_modules/
