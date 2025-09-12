@@ -70,6 +70,15 @@ export default defineConfig(
         },
       ],
 
+      // Disallow relative imports because they mess up Twilio's asset resolving
+      // Always import using @shared/... instead
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['.*'],
+        },
+      ],
+
       // prefer `import type { Foo } from '...';`
       '@typescript-eslint/consistent-type-imports': [
         'error',

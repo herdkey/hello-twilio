@@ -1,17 +1,18 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "src/functions/**/*"
+    "src/**/*"
   ],
   "compilerOptions": {
+    "rootDir": "src",
     "outDir": "dist",
-    "rootDir": "src"
+    "declaration": false,
   },
   "tsc-alias": {
     "replacers": {
       "requireAsset": {
         "enabled": true,
-        "file": "./scripts/replacers/shared-to-asset.replacer.cjs",
+        "file": "./scripts/shared-to-asset.replacer.cjs",
       }
     }
   }

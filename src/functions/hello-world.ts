@@ -2,6 +2,9 @@ import '@twilio-labs/serverless-runtime-types';
 
 import * as Twilio from 'twilio';
 
+// This validates that our functions can import modules
+// (when uploaded to Twilio Runtime as artifacts)
+import { logHello1 } from '@shared/hello/hello-util1';
 import { logger } from '@shared/utils/logger';
 
 import type {
@@ -22,17 +25,23 @@ type MyContext = {
   GREETING?: string;
 };
 
+// noinspection JSUnusedGlobalSymbols
 export const handler: ServerlessFunctionSignature = (
   context: Context<MyContext>,
   event: ServerlessEventObject<MyEvent>,
   callback: ServerlessCallback,
 ) => {
+  logHello1();
+
+  // get greeting from env variable
+  const greeting = context.GREETING ?? 'Hello';
+  // get subject from request body
+  const subject = event.Body ?? 'World';
+
   logger.info(`GREETING: ${context.GREETING}`);
+  logger.info(`body: ${event.Body}`);
+
   const twiml = new Twilio.twiml.VoiceResponse();
-  twiml.say(
-    `${context.GREETING ? context.GREETING : 'Hello'} ${
-      event.Body ? event.Body : 'World'
-    }!`,
-  );
+  twiml.say(`${greeting}, ${subject}!`);
   callback(null, twiml);
 };
