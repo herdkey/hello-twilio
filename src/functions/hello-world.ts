@@ -2,7 +2,7 @@ import '@twilio-labs/serverless-runtime-types';
 
 import * as Twilio from 'twilio';
 
-import { logger } from '@src/shared/logger';
+import { logger } from '@shared/utils/logger';
 
 import type {
   Context,

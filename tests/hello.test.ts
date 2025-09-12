@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it } from 'vitest';
 
-import { hello } from '../src/hello';
+import { logger } from '@shared/logger';
 
-describe('hello()', () => {
-  it('returns hello world', () => {
-    expect(hello()).toBe('hello world');
+describe('logger', () => {
+  it('info log', () => {
+    logger.info('Hello World');
   });
 });

@@ -1,7 +1,11 @@
 import { pino } from 'pino';
 
+import { sayHi } from '@shared/utils/say-hi';
+
 import type { LoggerOptions, DestinationStream } from 'pino';
 import type { PrettyOptions } from 'pino-pretty';
+
+sayHi();
 
 function createLogger() {
   const level = process.env.LOG_LEVEL || 'info';

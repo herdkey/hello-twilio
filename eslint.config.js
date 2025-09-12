@@ -47,7 +47,7 @@ export default defineConfig(
       'import/resolver': {
         typescript: { alwaysTryTypes: true },
       },
-      'import/internal-regex': '^@src/',
+      'import/internal-regex': '^@shared/',
     },
     rules: {
       'no-console': isStrict ? 'error' : 'warn',
