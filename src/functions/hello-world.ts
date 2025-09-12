@@ -7,6 +7,7 @@ import * as Twilio from 'twilio';
 import { logHello1 } from '@shared/hello/hello-util1';
 import { logger } from '@shared/utils/logger';
 
+import type { EnvContext, RequestHeaders } from '@shared/twilio';
 import type {
   Context,
   ServerlessCallback,
@@ -21,14 +22,17 @@ type MyEvent = {
 // If you want to use environment variables, you will need to type them like
 // this and add them to the Context in the function signature as
 // Context<MyContext> as you see below.
-type MyContext = {
+interface MyContext extends EnvContext {
   GREETING?: string;
-};
+}
 
 // noinspection JSUnusedGlobalSymbols
-export const handler: ServerlessFunctionSignature = (
-  context: Context<MyContext>,
-  event: ServerlessEventObject<MyEvent>,
+export const handler: ServerlessFunctionSignature<
+  Context<EnvContext>,
+  ServerlessEventObject<MyEvent, RequestHeaders>
+> = (
+  context: MyContext,
+  event: ServerlessEventObject<MyEvent, RequestHeaders>,
   callback: ServerlessCallback,
 ) => {
   logHello1();
