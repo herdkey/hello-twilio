@@ -12,7 +12,7 @@
     "replacers": {
       "appendPrivate": {
         "enabled": true,
-        "file": "./scripts/replacers/shared-to-asset.replacer.cjs",
+        "file": "./scripts/shared-to-asset.replacer.cjs",
       },
     }
   }

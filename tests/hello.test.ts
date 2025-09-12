@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 
-import { logger } from '@shared/logger';
+import { logger } from '@shared/utils/logger';
 
 describe('logger', () => {
   it('info log', () => {
