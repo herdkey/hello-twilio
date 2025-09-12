@@ -6,7 +6,7 @@ module.exports = {
   projects: {},
 
   // assets: true // Upload assets. Can be turned off with --no-assets
-  assetsFolder: './dist/assets', // Specific folder name to be used for static assets
+  assetsFolder: './dist/shared', // Specific folder name to be used for static assets
   // buildSid: null // An existing Build SID to deploy to the new environment
   // createEnvironment: false // Creates environment if it couldn't find it
   cwd: null, // Sets the directory of your existing Serverless project. Defaults to current directory

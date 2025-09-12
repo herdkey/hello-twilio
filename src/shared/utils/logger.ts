@@ -1,6 +1,6 @@
 import { pino } from 'pino';
 
-import type { LoggerOptions, DestinationStream } from 'pino';
+import type { LoggerOptions, DestinationStream, Logger } from 'pino';
 import type { PrettyOptions } from 'pino-pretty';
 
 function createLogger() {

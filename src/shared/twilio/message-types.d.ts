@@ -1,22 +1,26 @@
-// Twilio Messaging webhook TypeScript definitions derived from Twilio docs.
-// All values arrive via application/x-www-form-urlencoded as strings.
+/**
+ * Twilio Messaging webhook TypeScript definitions derived from Twilio docs.
+ * All values arrive via application/x-www-form-urlencoded as strings.
+ * Derived from https://www.twilio.com/docs/messaging/guides/webhook-request
+ */
 
-import type { TwilioFormBody, TwilioAddress } from './call-types';
+import type {
+  TwilioFormBody,
+  TwilioAddress,
+  TwilioGeoFieldsFrom,
+  TwilioGeoFieldsTo,
+} from './common-types';
+export {
+  TwilioFormBody,
+  TwilioAddress,
+  TwilioGeoFieldsFrom,
+  TwilioGeoFieldsTo,
+} from './common-types';
 
 // --- Geographic fields (optional) ---
-export interface TwilioMsgGeoFrom {
-  FromCity?: string;
-  FromState?: string;
-  FromZip?: string;
-  FromCountry?: string;
-}
+export type TwilioMsgGeoFrom = TwilioGeoFieldsFrom;
 
-export interface TwilioMsgGeoTo {
-  ToCity?: string;
-  ToState?: string;
-  ToZip?: string;
-  ToCountry?: string;
-}
+export type TwilioMsgGeoTo = TwilioGeoFieldsTo;
 
 // Dynamic media fields helpers
 export interface TwilioMediaIndexedFields {

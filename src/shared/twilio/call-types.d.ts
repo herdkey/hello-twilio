@@ -1,4 +1,30 @@
-// Twilio webhook and TwiML related TypeScript definitions derived from
+/**
+ * Twilio webhook and TwiML related TypeScript definitions derived from
+ * https://www.twilio.com/docs/voice/api/call-resource
+ * https://www.twilio.com/docs/voice/twiml#twilios-request-to-your-application
+ *
+ */
+
+import type {
+  TwilioAddress,
+  TwilioApiVersion,
+  TwilioFormBody,
+  TwilioGeoFieldsFrom,
+  TwilioGeoFieldsTo,
+  TwilioRfc2822DateTime,
+} from './common-types';
+import { ServerlessEventObject } from '@twilio-labs/serverless-runtime-types/types';
+export {
+  TwilioAddress,
+  TwilioApiVersion,
+  TwilioFormBody,
+  TwilioGeoFieldsFrom,
+  TwilioGeoFieldsTo,
+  TwilioRfc2822DateTime,
+  TwilioTwimlMime,
+  TwilioAudioMime,
+  TwilioPlainTextMime,
+} from './common-types';
 
 /** Twilio call status values */
 export type TwilioCallStatus =
@@ -21,28 +47,8 @@ export type TwilioStatusCallbackEvent =
   | 'answered'
   | 'completed';
 
-/** API version string (e.g., '2010-04-01'). */
-export type TwilioApiVersion = string;
-
-/** E.164 phone number or Twilio Client identifier (e.g. '+12316851234' or 'client:alice'). */
-export type TwilioAddress = string;
-
-/** RFC 2822 in GMT. Keep as string for transport fidelity. */
-export type TwilioRfc2822DateTime = string;
-
-// --- Geographic fields (optional) ---
-export interface TwilioGeoFieldsFrom {
-  FromCity?: string;
-  FromState?: string;
-  FromZip?: string;
-  FromCountry?: string;
-}
-
-export interface TwilioGeoFieldsTo {
-  ToCity?: string;
-  ToState?: string;
-  ToZip?: string;
-  ToCountry?: string;
+export interface A extends ServerlessEventObject<A> {
+  a: string;
 }
 
 /**
@@ -97,9 +103,6 @@ export interface TwilioStatusCallbackRequestBody
   /** One of 'initiated' | 'ringing' | 'answered' | 'completed' when configured. */
   StatusCallbackEvent?: TwilioStatusCallbackEvent;
 }
-
-/** Generic container if your framework exposes the raw POST body. */
-export type TwilioFormBody = Record<string, string | undefined>;
 
 /** Type guard: checks base inbound-call fields are present. */
 export function isTwilioIncomingCallBody(
@@ -186,8 +189,3 @@ export interface TwiMLGather {
     hints?: string;
   } & ({ Say: TwiMLSay['Say'] } | { Play: TwiMLPlay['Play'] } | object);
 }
-
-// MIME handling hints
-export type TwilioTwimlMime = 'text/xml' | 'application/xml' | 'text/html';
-export type TwilioAudioMime = `audio/${string}`;
-export type TwilioPlainTextMime = 'text/plain';

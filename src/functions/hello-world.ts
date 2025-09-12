@@ -7,7 +7,6 @@ import * as Twilio from 'twilio';
 import { logHello1 } from '@shared/hello/hello-util1';
 import { logger } from '@shared/utils/logger';
 
-import type { TwilioIncomingCallRequestBody } from '@shared/twilio';
 import type {
   Context,
   ServerlessCallback,

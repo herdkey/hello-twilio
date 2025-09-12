@@ -1,11 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "src/functions/**/*"
+    "src/**/*"
   ],
   "compilerOptions": {
+    "rootDir": "src",
     "outDir": "dist",
-    "rootDir": "src"
+    "declaration": false,
   },
   "tsc-alias": {
     "replacers": {

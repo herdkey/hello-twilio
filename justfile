@@ -4,21 +4,11 @@ set shell := ["/bin/zsh", "-euo", "pipefail", "-c"]
 # Make local node binaries available like npm does
 export PATH := "node_modules/.bin:" + env_var("PATH")
 
-build: build-assets build-functions
-    @node scripts/write-cjs-boundary.js
-
-build-assets: clean
-    tsc -p tsconfig.assets.json
-    @tsc-alias -p tsconfig.assets.json
+build: clean
+    tsc -p tsconfig.build.json
+    @tsc-alias -p tsconfig.build.json
     @node ./scripts/privatize.js
-
-build-functions: clean
-    tsc -p tsconfig.functions.json
-    @tsc-alias -p tsconfig.functions.json
-    @# Cleanup unnecessary output
-    @# There is no way to get tsc to stop outputting this, since we import from here
-    @# But when deployed, we import these from asset/ instead
-    @rm -rf dist/shared
+    @node scripts/write-cjs-boundary.js
 
 clean:
     rm -rf dist

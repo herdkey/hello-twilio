@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const dir = './dist/assets';
+const dir = './dist/shared';
 
 /**
  * Make assets private by renaming .js files to .private.js
