@@ -16,3 +16,6 @@ Thumbs.db
 /twilio.env
 /dist/
 .twiliodeployinfo
+/.local.env
+/logs/
+

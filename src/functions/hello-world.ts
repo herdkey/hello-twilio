@@ -15,37 +15,35 @@ import type {
   ServerlessEventObject,
 } from '@twilio-labs/serverless-runtime-types/types';
 
-type MyEvent = {
-  Body?: string;
-};
+type HelloEvent = object;
 
 // If you want to use environment variables, you will need to type them like
 // this and add them to the Context in the function signature as
-// Context<MyContext> as you see below.
-interface MyContext extends EnvContext {
+// Context<HelloContext> as you see below.
+interface HelloContext extends EnvContext {
   GREETING?: string;
 }
 
 // noinspection JSUnusedGlobalSymbols
 export const handler: ServerlessFunctionSignature<
-  Context<EnvContext>,
-  ServerlessEventObject<MyEvent, RequestHeaders>
+  Context<HelloContext>,
+  ServerlessEventObject<HelloEvent, RequestHeaders>
 > = (
-  context: MyContext,
-  event: ServerlessEventObject<MyEvent, RequestHeaders>,
+  context: HelloContext,
+  event: ServerlessEventObject<HelloEvent, RequestHeaders>,
   callback: ServerlessCallback,
 ) => {
   logHello1();
 
   // get greeting from env variable
   const greeting = context.GREETING ?? 'Hello';
-  // get subject from request body
-  const subject = event.Body ?? 'World';
 
+  // log greeting from env variable
   logger.info(`GREETING: ${context.GREETING}`);
-  logger.info(`body: ${event.Body}`);
 
+  // respond with TwiML instruction to say greeting back to caller
   const twiml = new Twilio.twiml.VoiceResponse();
-  twiml.say(`${greeting}, ${subject}!`);
+  twiml.say(`${greeting}, world!`);
+
   callback(null, twiml);
 };
