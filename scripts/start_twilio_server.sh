@@ -16,7 +16,8 @@ done
 
 # Start in the background
 mkdir -p logs
-nohup twilio serverless start --port "$port" \
+export PINO_PRETTY=true
+nohup twilio serverless start --port "$port" --load-local-env \
     > "${logfile}" 2>&1 &
 
 echo ""

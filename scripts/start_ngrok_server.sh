@@ -30,10 +30,14 @@ done
 
 # Start in the background
 mkdir -p logs
-nohup ngrok http "$port" --name "$endpoint_name" --domain "$NGROK_DOMAIN" \
+nohup ngrok http "$port" \
+    --name "$endpoint_name" \
+    --domain "$NGROK_DOMAIN" \
+    --log="$logfile" \
     > "$logfile" 2>&1 &
 
 echo ""
 echo "ngrok started, tailing logs. cmd+c will exit tailing but leave the ngrok process running."
 echo ""
+
 tail -f "${logfile}"
