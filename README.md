@@ -7,6 +7,7 @@
 3. Install deps: `pnpm install`
 4. Install Twilio CLI: `brew install twilio`
 5. Install Twilio Serverless CLI Plugin: `twilio plugins:install @twilio-labs/plugin-serverless`
+6. Install ngrok (Optional, for local development): `brew install ngrok`
 
 # Twilio Serverless
 
