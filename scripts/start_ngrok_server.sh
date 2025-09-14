@@ -39,5 +39,3 @@ nohup ngrok http "$port" \
 echo ""
 echo "ngrok started, tailing logs. cmd+c will exit tailing but leave the ngrok process running."
 echo ""
-
-tail -f "${logfile}"

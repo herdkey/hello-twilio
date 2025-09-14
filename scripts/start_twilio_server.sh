@@ -23,4 +23,3 @@ nohup twilio serverless start --port "$port" --load-local-env \
 echo ""
 echo "Twilio server started, tailing logs. cmd+c will exit tailing but leave the Twilio process running."
 echo ""
-tail -f "${logfile}"
