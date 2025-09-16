@@ -1,5 +1,5 @@
-# Fail immediately on errors
-set shell := ["/bin/zsh", "-euo", "pipefail", "-c"]
+# Use bash and fail immediately on errors
+set shell := ["/usr/bin/env", "bash", "-euo", "pipefail", "-c"]
 
 # gitignored file for devs to place overrides in
 set dotenv-filename := ".local.env"
@@ -12,7 +12,7 @@ port := env_var_or_default("PORT", "3001")
 # ngrok domain (claim a free domain on ngrok.com)
 ngrok_domain := env_var("NGROK_DOMAIN")
 # phone number to map to the ngrok domain (buy a number on twilio.com)
-phone := env_var_or_default("PHONE_NUMBER", "(323) 886-4676")
+phone := env_var("PHONE_NUMBER")
 
 build: clean
     tsc -p tsconfig.build.json
@@ -36,9 +36,12 @@ ngrok:
     "{{justfile_directory()}}/scripts/start_ngrok_server.sh"
 
 # route phone number webhook to local dev server
-route-calls:
+route-calls-local function="knock-knock":
     # see https://www.twilio.com/docs/serverless/functions-assets/quickstart/receive-call#create-and-host-a-function
-    twilio phone-numbers:update "{{phone}}" --voice-url "https://{{ngrok_domain}}/trace-call"
+    twilio phone-numbers:update "{{phone}}" --voice-url "https://{{ngrok_domain}}/{{function}}"
+
+route-calls-dev:
+    "{{justfile_directory()}}/scripts/route_calls.sh"
 
 # deploy after build
 deploy: build

@@ -11,7 +11,7 @@ function createLogger() {
   let stream: DestinationStream | undefined;
 
   // Use pino-pretty for tests
-  if (process.env.VITEST === 'true') {
+  if (process.env.VITEST === 'true' || process.env.PINO_PRETTY === 'true') {
     const pretty: (
       opts?: PrettyOptions,
       // have to use require because we don't have pino-pretty in prod deps
