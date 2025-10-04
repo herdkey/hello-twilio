@@ -17,7 +17,7 @@
     "axios": "1.12.2",
     "lodash": "^4.17.21",
     "pino": "^10.0.0",
-    "pino-http": "^10.5.0"
+    "pino-http": "^11.0.0"
   },
   "devDependencies": {
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
